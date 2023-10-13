@@ -72,8 +72,7 @@ class UserModelAdmin(EmailUserAdmin):
 # Register all models
 
 # large fk list will be read-only in admin:
-large_fk_fields = ['internal_armature_position', 'sap_batch_request', 'item', 'arm_position', 'abrcm_process',
-                   'plan', 'lines', 'cutter_work_order']
+large_fk_fields = []
 
 
 class ListAdminMixin(object):

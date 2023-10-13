@@ -100,54 +100,6 @@ class SystemMail(object):
         cls.send_email(subject, content, to, message_type)
         logger.info(f"Sent system report mail: {subject}")
         return
-    
-
-    @classmethod
-    def sap_connection_fail(cls):
-        subject = f"Neuspjela autentikacija"
-        message = f"Prilikom spajanja aplikacije na SAP, autentikacija je odbijena.<br>" \
-                  f"Molimo provjerite sustav i popravite pogrešku."
-        cls.generic_sap_mail(subject, message)
-        return
-
-    @classmethod
-    def sap_url_fail(cls, response):
-        subject = f"Neuspjela autorizacija"
-        message = f"Prilikom spajanja aplikacije na SAP, dobiven je status {response.status_code}.<br>" \
-                  f"Korišten url: {response.url}<br>" \
-                  f"Molimo provjerite sustav i popravite pogrešku."
-        cls.generic_sap_mail(subject, message)
-        return
-
-    @classmethod
-    def sap_request_import_fail(cls, data_refused):
-        def generate_list(data):
-            lines = str()
-            for entry in data:
-                lines += f"-----------<br>"
-                for k, v in entry.items():
-                    lines += f"{k}: {v}<br>"
-            return lines
-
-        subject = f"Neuspjeli unos naloga"
-        message = f"Jedan ili više naloga nisu uneseni u bazu aplikacije.<br>" \
-                  f"<br>" \
-                  f"Ispis neuspjelih naloga:<br>" \
-                  f"{generate_list(data_refused)}" \
-                  f"<br>" \
-                  f"Molimo popravite podatke ili zatvorite stavku/nalog."
-        cls.generic_sap_mail(subject, message)
-        return
-
-    @classmethod
-    def sap_close_batch_fail(cls, response, batch_code):
-        subject = f"Neuspjelo zatvaranje stavke | Stavka: {batch_code}"
-        message = f"Prilikom zatvaranja stavke naloga na SAP-u, dobiven je status {response.status_code}.<br>" \
-                  f"Order code: {batch_code}<br>" \
-                  f"Korišten url: {response.url}<br>" \
-                  f"Molimo provjerite sustav i popravite pogrešku."
-        cls.generic_sap_mail(subject, message)
-        return
 
     """
     Generic mail to user

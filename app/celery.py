@@ -11,3 +11,17 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.autodiscover_tasks()
 
+
+""" EXAMPLE
+app.conf.CELERYBEAT_SCHEDULE = {
+    
+    'eternity_message': {
+        'task': 'send_em_message',
+        'schedule': crontab(minute=30),
+    },
+    'schedule_interval_system_constants': {
+        'task': 'schedule_interval_system_constants',
+        'schedule': crontab(minute=5),
+    },
+}
+"""

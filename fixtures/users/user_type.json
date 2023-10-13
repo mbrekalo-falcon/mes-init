@@ -1,16 +1,16 @@
 [
-    {
-      "fields":{
-        "name":"Employee"
-      },
-      "model":"user.usertype",
-      "pk":1
+  {
+    "fields":{
+      "name":"Employee"
     },
-    {
-      "fields":{
-        "name":"External user"
-      },
-      "model":"user.usertype",
-      "pk":2
-    }
-  ]
+    "model":"user.usertype",
+    "pk":1
+  },
+  {
+    "fields":{
+      "name":"External user"
+    },
+    "model":"user.usertype",
+    "pk":2
+  }
+]
