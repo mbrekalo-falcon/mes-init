@@ -80,19 +80,6 @@ class UserApplicationRole(BaseModelFields):
         return f'Id: {self.id} Cluster Role Id: {self.cluster_role.id} User: {self.user.id}'
 
 
-class UserClient(BaseModelFields):
-    """
-    Helper model for connecting independent client user to client
-    """
-    user = models.ForeignKey('user.UserModel', on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ('user',)
-
-    def __str__(self):
-        return f'Id: {self.id} User Id: {self.user.id}'
-
-
 class ClusterMachineDevice(BaseModelFields):
     """
         Assign Cluster To Machine and Device

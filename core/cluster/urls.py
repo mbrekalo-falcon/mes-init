@@ -3,7 +3,7 @@ from django.urls import path
 from .views import (
     ClusterApi, ClusterUserApi, UserApplicationRoleApi,
     ApplicationModuleClusterRolePermissionApi, ClusterMachineDeviceApi,
-    ClusterRoleView, UserClientSerializerView
+    ClusterRoleView
 )
 
 MAIN_PATH = 'clusters'
@@ -24,6 +24,4 @@ urlpatterns = [
     path(MAIN_PATH+'/machine-devices', ClusterMachineDeviceApi.as_view(), name='machine-devices'),
     # url to ClusterRoleView
     path(MAIN_PATH+'/cluster-role', ClusterRoleView.as_view(), name='cluster-role'),
-    # UserClientSerializerView
-    path(MAIN_PATH+'/user-client', UserClientSerializerView.as_view(), name='user-client'),
 ]

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from models.cluster.models import (
-    Cluster, ClusterRoleAlert, ClusterUser, ClusterRole, UserApplicationRole, UserClient,
+    Cluster, ClusterRoleAlert, ClusterUser, ClusterRole, UserApplicationRole,
     ClusterMachineDevice, ApplicationModuleClusterRolePermission
 )
 from models.common.models import ApplicationRole
@@ -105,42 +105,6 @@ class UserApplicationRoleSerializer(serializers.ModelSerializer):
         user_role = UserApplicationRole(**validated_data)
         user_role.save()
         return user_role
-
-    def update(self, instance, validated_data):
-        if validated_data:
-            for attr, value in validated_data.items():
-                setattr(instance, attr, value)
-            instance.save()
-        return instance
-
-
-class UserClientSerializer(serializers.ModelSerializer):
-    client_details = serializers.SerializerMethodField()
-    user_details = serializers.SerializerMethodField()
-
-    class Meta:
-        model = UserClient
-        fields = '__all__'
-
-    def get_client_details(self, obj):
-        return {
-            'id': obj.client.id,
-            'sap_card_code': obj.client.sap_card_code,
-            'sap_card_name': obj.client.sap_card_name,
-            'type': obj.client.sap_partner_type.name,
-        }
-
-    def get_user_details(self, obj):
-        return {
-            'id': obj.user.id,
-            'full_name': obj.user.full_name,
-            'email': obj.user.email
-        }
-
-    def create(self, validated_data):
-        user_client = UserClient(**validated_data)
-        user_client.save()
-        return user_client
 
     def update(self, instance, validated_data):
         if validated_data:
